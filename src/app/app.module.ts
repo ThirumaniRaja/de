@@ -10,13 +10,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IptrackerComponent } from './components/iptracker/iptracker.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfigurationComponent } from './components/configuration/configuration.component';
+import { ReacttemplateComponent } from './components/react-template/reacttemplate/reacttemplate.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DrapresizeboxComponent,
     IptrackerComponent,
-    ConfigurationComponent
+    ConfigurationComponent,
+    ReacttemplateComponent
   ],
   imports: [
     BsDatepickerModule.forRoot(),
