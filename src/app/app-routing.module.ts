@@ -6,10 +6,10 @@ import { DrapresizeboxComponent } from './components/drapresizebox/drapresizebox
 
 import { IptrackerComponent } from './components/iptracker/iptracker.component';
 
-const routes: Routes = [{path:'',component:AppComponent},
+const routes: Routes = [{path:'',component:IptrackerComponent},
   {path:'drag',component:DrapresizeboxComponent},
 
-  {path:'ip',component:IptrackerComponent}
+  // {path:'clientInfo',component:IptrackerComponent}
 ];
 
 @NgModule({

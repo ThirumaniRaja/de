@@ -1,2 +1,25 @@
-<p>iptracker works!</p>
-<div>my ip is : {{ip}}</div>
+<div class="client-info-card" *ngIf="clientInfo">
+  <h2>Client Info</h2>
+  <table>
+    <tr>
+      <td><strong>IP Address</strong></td>
+      <td>{{ clientInfo.ip }}</td>
+    </tr>
+    <tr>
+      <td><strong>Time Zone</strong></td>
+      <td>{{ clientInfo.timeZone }}</td>
+    </tr>
+    <tr>
+      <td><strong>Operating System</strong></td>
+      <td>{{ clientInfo.os }}</td>
+    </tr>
+    <tr>
+      <td><strong>Browser</strong></td>
+      <td>{{ clientInfo.browser }}</td>
+    </tr>
+  </table>
+</div>
+
+<div *ngIf="!clientInfo">
+  <p>Loading client info...</p>
+</div>

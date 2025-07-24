@@ -1,0 +1,24 @@
+.client-info-card {
+  max-width: 400px;
+  margin: 30px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.client-info-card h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.client-info-card table {
+  width: 100%;
+}
+
+.client-info-card td {
+  padding: 8px;
+  vertical-align: top;
+}
