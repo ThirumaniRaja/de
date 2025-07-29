@@ -29,6 +29,12 @@ export class ClientinfoService {
   private getOS(): string {
     return navigator.platform || 'Unknown OS';
   }
+  private getBrowser(): string {
+    const browser = Bowser.getParser(window.navigator.userAgent);
+    const name = browser.getBrowserName(); // e.g., "Chrome", "Brave", "Edge", "Firefox", "Safari", "Opera", etc.
+    // console.log(`Detected browser: ${name}`);
+    return name || 'Unknown Browser';
+  }
 
   private getBrowserS(): string {
     const userAgent = navigator.userAgent;
@@ -44,13 +50,6 @@ export class ClientinfoService {
       return 'Unknown Browser';
     }
   }
-
-  private getBrowser(): string {
-  const browser = Bowser.getParser(window.navigator.userAgent);
-  const name = browser.getBrowserName();  // e.g., "Chrome", "Brave", "Edge", "Firefox", "Safari", "Opera", etc.
-  // console.log(`Detected browser: ${name}`);
-  return name || 'Unknown Browser';
-}
 
   getClientInfo(): Observable<ClientInfo> {
     return forkJoin({
