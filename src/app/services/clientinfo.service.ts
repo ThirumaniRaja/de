@@ -31,12 +31,20 @@ export class ClientinfoService {
   }
   private getBrowser(): string {
     const browser = Bowser.getParser(window.navigator.userAgent);
-    const name = browser.getBrowserName(); // e.g., "Chrome", "Brave", "Edge", "Firefox", "Safari", "Opera", etc.
-    // console.log(`Detected browser: ${name}`);
+    const name = browser.getBrowserName(); 
     return name || 'Unknown Browser';
   }
 
-  private getBrowserS(): string {
+  getClientInfo(): Observable<ClientInfo> {
+    return forkJoin({
+      ip: this.getPublicIP(),
+      timeZone: of(this.getTimeZone()),
+      os: of(this.getOS()),
+      browser: of(this.getBrowser()),
+    });
+  }
+
+    private getBrowserS(): string {
     const userAgent = navigator.userAgent;
     if (userAgent.includes('Edg/')) {
       return 'Edge';
@@ -50,13 +58,30 @@ export class ClientinfoService {
       return 'Unknown Browser';
     }
   }
-
-  getClientInfo(): Observable<ClientInfo> {
-    return forkJoin({
-      ip: this.getPublicIP(),
-      timeZone: of(this.getTimeZone()),
-      os: of(this.getOS()),
-      browser: of(this.getBrowser()),
-    });
-  }
 }
+
+// this below code is used to bypass the token for any API call in angular application 
+// import { HttpClient, HttpBackend } from '@angular/common/http';
+// import { Component } from '@angular/core';
+
+// @Component({
+//   selector: 'app-your-component',
+//   templateUrl: './your.component.html'
+// })
+// export class YourComponent {
+//   private rawHttpClient: HttpClient;
+
+//   constructor(private httpBackend: HttpBackend) {
+//     // This HttpClient does NOT use interceptors
+//     this.rawHttpClient = new HttpClient(httpBackend);
+//   }
+
+//   getPublicIP() {
+//     this.rawHttpClient.get('https://api64.ipify.org/?format=json')
+//       .subscribe(
+//         res => console.log('IP API Response:', res),
+//         err => console.error('Failed to get IP:', err)
+//       );
+//   }
+// }
+
