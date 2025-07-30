@@ -27,7 +27,10 @@ export class ClientinfoService {
   }
 
   private getOS(): string {
-    return navigator.platform || 'Unknown OS';
+     if ((navigator as any).userAgentData?.platform) {
+      return (navigator as any).userAgentData.platform;
+    }
+    return navigator.platform || 'Unknown';
   }
   private getBrowser(): string {
     const browser = Bowser.getParser(window.navigator.userAgent);
