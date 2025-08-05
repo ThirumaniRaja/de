@@ -8,6 +8,7 @@ export interface ClientInfo {
   timeZone: string;
   os: string;
   browser: string;
+  resolution:any;
 }
 
 @Injectable({
@@ -38,12 +39,17 @@ export class ClientinfoService {
     return name || 'Unknown Browser';
   }
 
+    private getScreenResolution() {
+    return `${window.screen.width}x${window.screen.height}`;
+  }
+
   getClientInfo(): Observable<ClientInfo> {
     return forkJoin({
       ip: this.getPublicIP(),
       timeZone: of(this.getTimeZone()),
       os: of(this.getOS()),
       browser: of(this.getBrowser()),
+      resolution:of(this.getScreenResolution())
     });
   }
 
